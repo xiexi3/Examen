@@ -3,8 +3,6 @@ const btns = document.querySelectorAll("button");
 const input = document.querySelectorAll("input")[0];
 const ul = document.querySelectorAll("ul")[0];
 
-// console.log(ul);
-
 const container = divs[0];
 container.className = 'container';
 
@@ -26,9 +24,6 @@ btnAnadir.className = 'btn-add';
 
 const noTaskSpan = emptyContainer.querySelectorAll("p")[0];
 const taskCounter = taskCountContainer.querySelectorAll("span")[1];
-// const btnDelete = document.getElementsByClassName("btn-delete");
-// const listItems = document.querySelectorAll('li');
-
 
 btnAnadir.addEventListener("click", function (e){
   e.preventDefault(); 
@@ -45,7 +40,6 @@ btnAnadir.addEventListener("click", function (e){
 
 
 function crearTareas(ul, texto) {
-  // Crear estructura
   const li = document.createElement("li");
   const p = document.createElement("p");
 	const span = document.createElement("span");
@@ -69,6 +63,15 @@ function crearTareas(ul, texto) {
     actualizarContador();
   })
 
+  p.addEventListener("click", function (e) {
+    e.preventDefault(); 
+    if(span.hasAttribute("style")) {
+      span.removeAttribute("style");
+    } else {
+      span.style.textDecoration = "line-through";
+    }
+  })
+
 
   return ul;
 }
@@ -78,4 +81,3 @@ function actualizarContador() {
     noTaskSpan.textContent = 'You have no pending tasks';
   }
 }
-
