@@ -33,10 +33,14 @@ const taskCounter = taskCountContainer.querySelectorAll("span")[1];
 btnAnadir.addEventListener("click", function (e){
   e.preventDefault(); 
   const textoTarea = input.value;
-  noTaskSpan.textContent = ""; // Borro el span que decia no hay tareas
-  taskCounter.textContent++; // Aumento cada vez que anado tarea
-  input.value = ""; // Limpio el input
-  crearTareas(ul, textoTarea);
+  if(textoTarea == "") {
+    alert("No se pueden anadir tareas vacias, inserta una tarea por favor.")
+  } else {
+    noTaskSpan.textContent = ""; // Borro el span que decia no hay tareas
+    taskCounter.textContent++; // Aumento cada vez que anado tarea
+    input.value = ""; // Limpio el input
+    crearTareas(ul, textoTarea);
+  }
 })
 
 
