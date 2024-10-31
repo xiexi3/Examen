@@ -23,32 +23,22 @@ taskCountContainer.className = 'task-count';
 const btnAnadir = btns[0];
 btnAnadir.className = 'btn-add';
 
-// const 
-// botones.forEach(element => {
-//   element.setAttribute("style", "background-color: black; border-color: #f6f6f6; color: #f6f6f6");
-// });
-
-
-// function anadirTarea() {
-
-// }
-
 
 const noTaskSpan = emptyContainer.querySelectorAll("p")[0];
 const taskCounter = taskCountContainer.querySelectorAll("span")[1];
+// const btnDelete = document.getElementsByClassName("btn-delete");
+// const listItems = document.querySelectorAll('li');
 
-console.log(taskCounter.className);
 
 btnAnadir.addEventListener("click", function (e){
   e.preventDefault(); 
-
   const textoTarea = input.value;
-  // console.log(textoTarea);
-
+  noTaskSpan.textContent = ""; // Borro el span que decia no hay tareas
+  taskCounter.textContent++; // Aumento cada vez que anado tarea
+  input.value = ""; // Limpio el input
   crearTareas(ul, textoTarea);
-  
-  // console.log(liContainer);
 })
+
 
 function crearTareas(ul, texto) {
   // Crear estructura
@@ -66,7 +56,22 @@ function crearTareas(ul, texto) {
   p.appendChild(span);
   
   span.textContent = texto; // Anado el texto de la tarea a la lista
-  noTaskSpan.textContent = ""; // Borro el span que decia no hay tareas
-  taskCounter.textContent++; // Aumento cada vez que anado tarea
+
+  // Anado un event listener a cada btnDelete
+  btnDelete.addEventListener("click", function (e) {
+    e.preventDefault(); 
+    li.remove();
+    taskCounter.textContent--;
+    actualizarContador();
+  })
+
+
   return ul;
 }
+
+function actualizarContador() {
+  if(taskCounter.textContent === '0') {
+    noTaskSpan.textContent = 'You have no pending tasks';
+  }
+}
+
