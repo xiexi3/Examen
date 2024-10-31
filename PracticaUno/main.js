@@ -51,6 +51,7 @@ btnAnadir.addEventListener("click", function (e){
 })
 
 function crearTareas(ul, texto) {
+  // Crear estructura
   const li = document.createElement("li");
   const p = document.createElement("p");
 	const span = document.createElement("span");
@@ -64,8 +65,8 @@ function crearTareas(ul, texto) {
   li.appendChild(btnDelete)
   p.appendChild(span);
   
-  span.textContent = texto;
-  noTaskSpan.remove();
-
+  span.textContent = texto; // Anado el texto de la tarea a la lista
+  noTaskSpan.textContent = ""; // Borro el span que decia no hay tareas
+  taskCounter.textContent++; // Aumento cada vez que anado tarea
   return ul;
 }
